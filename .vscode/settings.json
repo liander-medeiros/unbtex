@@ -1,0 +1,47 @@
+{
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.latex.outDir": "%DIR_W32%/.build/",
+    "latex-workshop.latex.bibDirs": [
+        "%WORKSPACE_FOLDER%/**/unbtex/**"
+    ],
+    "latex-workshop.latex.search.rootFiles.include": [
+        "%WORKSPACE_FOLDER%/**/unbtex/**"
+    ],
+    "latex-workshop.latex.watch.files.ignore": [
+        "%OUTDIR%/**",
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pdf",
+                "-outdir=%OUTDIR_W32%",
+                "%DOC_W32%"
+            ],
+            "env": {}
+        },
+        // Editar nas linhas abaixo o nome do arquivo de saída ao compilar o documento no VS Code.
+        // O padrão é "unbtex-example.pdf", mas você pode alterar para o nome que desejar, observadas as regras de nomenclatura do seu sistema operacional.
+        {
+            "name": "cp-win",
+            "command": "copy",
+            "args": ["%OUTDIR_W32%\\%DOCFILE%.pdf", "%WORKSPACE_FOLDER%\\unbtex-example.pdf"]
+        },
+        {
+            "name": "cp-unix",
+            "command": "cp",
+            "args": ["%OUTDIR_W32%/%DOCFILE%.pdf", "%WORKSPACE_FOLDER%/unbtex-example.pdf"]
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "latexmk",
+            // Se estiver usando Windows, altere na linha abaixo de "cp-unix" para "cp-win".
+            "tools": ["latexmk", "cp-unix"]  // Usar "cp-win" no Windows
+        }
+    ],
+}

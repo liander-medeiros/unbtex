@@ -1,0 +1,204 @@
+% ----------------------------------------------------------
+\chapter{Tabelas e figuras}
+\label{cap:tabfig}
+% ----------------------------------------------------------
+
+A classe UnB\TeX\ permite numerar tabelas, figuras, equações, códigos, algoritmos, definições, teoremas e outros elementos por capítulo, por meio da opção \texttt{num=tradicional}, ou de forma consecutiva em todo o documento, por meio da opção \texttt{num=abnt}. Este documento adota a numeração por capítulo, embora a ABNT recomende a numeração consecutiva.
+
+% ---
+\section{Tabelas}
+% ---
+
+As \cref{tab:nivel,tab:fluxo,tab:ibge} são exemplos de tabelas construídas com \LaTeX. Observe que a \cref{tab:ibge} utiliza o padrão do \citeonline{ibge1993}, indicada pela ABNT para trabalhos acadêmicos. Neste padrão, o texto da legenda, incluído na parte superior, e os demais textos (fonte e notas), incluídos na parte inferior, têm a mesma largura da tabela.
+
+\begin{table}[htb]
+%\begin{quadro}[htb]
+\centering
+\small
+\caption{Níveis de investigação}
+\label{tab:nivel}
+{\renewcommand{\arraystretch}{1.3}% espaçamento entre as linhas da tabela
+\begin{tabular}{p{2.6cm}p{5.5cm}p{2.8cm}p{2.5cm}}
+  \rowcolor{verdeunb!10}\textbf{Nível de Investigação} & \textbf{Insumos} & \textbf{Sistemas de Investigação} & \textbf{Produtos} \\ \hline
+  Meta-nível & Filosofia da Ciência & Epistemologia & Paradigma \\ \hline
+  Nível do objeto & Paradigmas do metanível e evidências do nível inferior & Ciência  & Teorias e modelos \\ \hline
+  Nível inferior & Modelos e métodos do nível do objeto e problemas do nível inferior & Prática & Solução de problemas \\
+\end{tabular}}
+\fonte{\citeonline{gigch1986}}
+%\end{quadro}
+\end{table}
+
+%\afterpage{% Evita quebra de página ao inserir tabela rotacionada
+%\begin{landscape}% Rotaciona a tabela
+\begin{table}
+\small
+\centering
+\caption{Componentes curriculares do segundo nível}
+\label{tab:fluxo}
+{\renewcommand{\arraystretch}{1.3}% espaçamento entre as linhas da tabela
+\begin{tabular}{|l|m{4.5cm}|C{.7cm}|C{.7cm}|C{.7cm}|C{.75cm}|C{.7cm}|l|}
+\hline%
+\multicolumn{8}{|l|}{\textbf{2º Nível}} \\ \hline%
+\multirow{2}{*}{Código} &
+\multirow{2}{*}{Componente curricular} &
+\multicolumn{5}{c|}{Quantidade de horas} & 
+\multirow{2}{*}{Pré-requisito} \\ 
+\cline{3-7} & & Teo. & Pr. & Ext. & EaD & Tot. & \\ \hline\hline%
+MAT0026 & Cálculo 2 & 60 & 30 & 0 & 0 & 90 & MAT0025 \\ \hline%
+IFD0171 & Física 1 & 60 & 0 & 0 & 0 & 60 & \\ \hline%
+IFD0173 & Física 1 Experimental & 0 & 30 & 0 & 0 & 30 & \\ \hline%
+EST0023 & Probabilidade e Estatística & 30 & 30 & 0 & 0 & 60 & MAT0025 \\ \hline%
+ENM0190 & Desenho Mecânico para Engenharia & 30 & 30 & 0 & 0 & 60 & \\ \hline%
+CIC0090 & Estruturas de Dados & 30 & 30 & 0 & 0 & 60 & CIC0004 \\ \hline%
+\multicolumn{6}{|l|}{Componentes optativos ou eletivos} & 60 & \multicolumn{1}{r}{} \\ \cline{1-7}%
+\multicolumn{6}{|l|}{Total de horas do 2º Nível} & 420 & \multicolumn{1}{r}{} \\ \cline{1-7}%
+\end{tabular}}
+\fonte{Elaborada pelo autor}
+\end{table}
+%\end{landscape}
+%}
+
+\begin{table}[htb]
+\centering
+\IBGEtab{%
+  \caption{Um Exemplo de tabela conforme o padrão IBGE}%
+  \label{tab:ibge}
+}{%
+  \begin{tabular}{@{}ccc@{}}% @{} elimina o espaço nas bordas laterais
+  \toprule
+  \textbf{Nome} & \textbf{Nascimento} & \textbf{Documento}$^\ast$ \\ \midrule
+  Maria da Silva & 11/11/1111 & 111.111.111-11 \\[3pt]
+  João Souza & 11/11/2111 & 211.111.111-11 \\[3pt]
+  Laura Vicuña & 05/04/1891 & 3111.111.111-11 \\ \bottomrule
+  \end{tabular}%
+}{%
+  \fonte{Elaborada pelo autor}%
+  \legend[Nota:]{Esta é uma nota, que diz que os dados são baseados na regressão linear}%
+  \legend[$^\ast$]{Outro tipo de nota}
+}
+\end{table}
+
+Para alterar cores em tabelas, foi utilizado o pacote \textsf{colortbl}. A mesclagem de linhas e colunas, exemplificada na \cref{tab:fluxo}, foi realizada com o pacote \textsf{multirow}. Sempre que possível, evite linhas verticais entre colunas. Nas \cref{tab:nivel,tab:ibge}, por exemplo, foram utilizados os comandos \verb|\toprule|, \verb|\midrule| e \verb|\bottomrule| do pacote \textsf{booktabs}, enquanto a \cref{tab:fluxo} utiliza linhas verticais e o comando \verb|\hline|. O espaçamento entre linhas pode ser ajustado com \verb|\arraystretch| e \verb|\addlinespace|.
+
+Os pacotes \textsf{longtable} e \textsf{rotating} permitem criar, respectivamente, tabelas com múltiplas páginas e tabelas rotacionadas; exemplos podem ser encontrados no \cref{apd:tabs}. Os pacotes \textsf{tabularray} e \textsf{nicematrix} não foram utilizados neste documento devido ao maior tempo de processamento. Além disso, existem ferramentas online para gerar código \LaTeX\ para tabelas\footnote{Por exemplo: \url{https://www.tablesgenerator.com/}}.
+
+As normas da ABNT também preveem o uso de quadros. Em geral, tabelas são utilizadas para dados numéricos e quadros para informações textuais. Para criar quadros, utilize o ambiente \texttt{quadro}, disponibilizado pela classe UnB\TeX. As listas de tabelas e quadros podem ser geradas, respectivamente, pelos comandos \verb|\imprimirlistadetabelas| e \verb|\imprimirlistadequadros|.
+
+% ---
+\section{Figuras}
+% ---
+
+Para diagramas, gráficos e ilustrações produzidos pelo próprio autor, recomenda-se o uso de imagens vetoriais em formato \texttt{pdf}, como na \cref{fig:blockdiag1}, pois permitem redimensionamento sem perda de qualidade e geralmente resultam em arquivos menores. O \textsf{InkScape} (\url{https://inkscape.org/}) é uma alternativa livre ao CorelDraw e ao Adobe Illustrator para produzir esse tipo de imagem.
+
+\begin{figure}[htb]
+\centering
+\caption{Sistema em malha fechada, com realimentação da saída}
+\label{fig:blockdiag1}
+\includegraphics[scale=1]{blockdiagram.pdf}
+\fonte{Elaborada pelo autor}
+\end{figure}
+
+Quando não for possível utilizar imagens em formato \texttt{pdf}, podem ser empregados formatos como \texttt{jpeg}, \texttt{gif} e \texttt{bmp}, embora normalmente resultem em maior tempo de processamento. Para editar esse tipo de imagem, uma alternativa livre ao Adobe Photoshop é o \textsf{Gimp} (\url{https://www.gimp.org/}). Figuras, diagramas e gráficos também podem ser produzidos diretamente em \LaTeX\ com pacotes como \textsf{TikZ}, que não foram utilizados neste documento por exigirem maior tempo de compilação.
+
+De acordo com as normas da ABNT, a legenda de figuras e tabelas (comando \verb|\caption|) deve ser posicionada na parte superior, enquanto a fonte e eventuais notas (comandos \verb|\fonte| e \verb|\legend|) devem aparecer na parte inferior. Referências não devem ser incluídas na legenda superior; para isso, utilize os comandos \verb|\fonte| e \verb|\legend|. Caso deseje posicionar a legenda abaixo da figura, insira o comando \verb|\caption| após \verb|\includegraphics|. Observe ainda que, diferentemente da \cref{fig:blockdiag1}, a \cref{fig:blockdiag2} apresenta legenda e nota com a mesma largura da figura, conforme recomendado pela ABNT.
+
+A lista de figuras pode ser incluída como elemento pré-textual por meio do comando \verb|\imprimirlistadefiguras| no arquivo \texttt{tex} principal.
+
+\begin{figure}[htb]
+\centering
+\IBGEtab{%
+  \caption{Digrama de blocos de sistema de controle em malha fechada}%
+  \label{fig:blockdiag2}
+}{%
+  \includegraphics[scale=1]{blockdiagram.pdf}
+}{%
+  \fonte{Elaborada pelo autor}%
+}
+\end{figure}
+
+% ---
+\subsection{Figuras em \emph{minipages}}
+% ---
+
+\emph{Minipages} são usadas para inserir textos ou outros elementos em quadros com tamanhos e posições controladas. Veja os exemplos das \cref{fig:minipage_circuito,fig:minipage_grafico}.
+
+\begin{figure}[htb]
+\label{fig:teste}
+\centering
+\begin{minipage}[t]{0.46\textwidth}
+  \centering
+  \caption{Imagem da minipage}
+  \label{fig:minipage_circuito}
+  \includegraphics[scale=1]{circuito.pdf} 
+  \fonte{Elaborada pelo autor}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.52\textwidth}
+  \centering
+  \caption{Gráfico da minipage}
+  \label{fig:minipage_grafico}
+  \includegraphics[scale=1.2]{diodocurva.pdf}
+  \fonte{Elaborada pelo autor}
+\end{minipage}
+\end{figure}
+
+%\begin{figure}[htb]
+%\centering
+%\captionbox{Imagem da minipage\label{fig:minipage_circuito}}
+%  [0.47\textwidth]{\includegraphics[scale=1]{circuito.pdf}\fonte{Elaborada pelo autor}}\hfill
+%\captionbox{Gráfico da minipage\label{fig:minipage_grafico}}
+%  [0.52\textwidth]{\includegraphics[scale=1.2]{diodocurva.pdf}\fonte{Elaborada pelo autor}}
+%\end{figure}
+
+\subsection{Subfiguras}
+
+O pacote \textsf{subcaption} foi utilizado para inserir as \cref{fig:subfigura_circuito,fig:subfigura_grafico}. Para mais informações sobre o pacote, consulte seu manual\footnote{Disponível em: \url{https://mirrors.ctan.org/macros/latex/contrib/caption/subcaption.pdf}}.
+
+\begin{figure}[htb]
+\centering
+\caption{Figura com subfiguras\label{fig:subfiguras}}
+\subcaptionbox{Primeira subfigura\label{fig:subfigura_circuito}}
+  {\includegraphics[scale=1]{circuito.pdf}} \hfill
+\subcaptionbox{Segunda subfigura\label{fig:subfigura_grafico}}
+  {\includegraphics[scale=1.2]{diodocurva.pdf}}
+\fonte{Elaborada pelo autor}
+\end{figure}
+
+%\begin{figure}
+%\centering
+% \caption{Figura com subfiguras}\label{fig:subfiguras}
+% \begin{subcaptionblock}{0.47\textwidth}
+%  \caption{Primeira subfigura}\label{fig:subfigura_circuito}
+%  \centering
+%  \includegraphics[scale=1]{circuito.pdf}
+%\end{subcaptionblock}%
+%\begin{subcaptionblock}{.52\textwidth}
+%  \caption{Segunda subfigura}\label{fig:subfigura_grafico}
+%  \centering
+%  \includegraphics[scale=1.2]{diodocurva.pdf}
+%\end{subcaptionblock}%
+%\end{figure}
+
+% ---
+\subsection{Figuras que usam as mesmas fontes tipográficas do documento}
+% ---
+
+Para utilizar nas figuras as mesmas fontes tipográficas do texto, como na \cref{fig:psfrag1}, crie a figura \texttt{blockdiagram.eps}, mostrada na \cref{fig:psfrag2}. Softwares como InkScape, CorelDraw e Adobe Illustrator podem ser utilizados para esse fim.
+
+\begin{figure}[htb]
+\centering
+\caption{Uso do pacote \textsf{psfrag}\label{fig:psgrag}}
+\subcaptionbox{Arquivo \texttt{blockdiagram.pdf}\label{fig:psfrag1}}
+  {\includegraphics[scale=1]{blockdiagram.pdf}} \\ \medskip
+\subcaptionbox{Arquivo \texttt{blockdiagram.eps}\label{fig:psfrag2}}
+  {\includegraphics[scale=1]{blockdiagram.eps}}
+\fonte{Elaborada pelo autor}
+\end{figure}
+
+Em seguida, crie um projeto auxiliar no Overleaf com o arquivo \texttt{blockdiagram.tex}, apresentado no \cref{cod:tex}, e defina-o como arquivo principal. Adicione ao projeto o arquivo \texttt{blockdiagram.eps}, compile-o com o compilador \texttt{LaTeX} e salve a figura gerada como \texttt{blockdiagram.pdf}. Esse arquivo poderá então ser utilizado no projeto principal, que é compilado com \texttt{pdfLaTeX}.
+
+\lstinputlisting[float=htb,numbers=none,caption={\texttt{blockdiagram.tex}},label={cod:tex},fonte={Elaborado pelo autor}]{src/codigos/blockdiagram.tex}
+
+Note que o \cref{cod:tex} utiliza o pacote \textsf{psfrag}, que permite substituir textos da figura original por conteúdos formatados com a mesma tipografia e os mesmos recursos matemáticos do documento. Por exemplo, o comando \verb|\psfrag{g}[c][c]{\small $G(s)$}| substitui ``g'' por ``$G(s)$''. Como o \textsf{psfrag} funciona apenas com o compilador \texttt{LaTeX}, o projeto auxiliar é uma forma simples de gerar figuras para documentos compilados com \texttt{pdfLaTeX}. Para mais detalhes, consulte o manual do pacote\footnote{Disponível em: \url{https://mirrors.ctan.org/macros/latex/contrib/psfrag/pfgguide.pdf}}.
+
+Recomenda-se não utilizar arquivos \texttt{eps} diretamente no documento principal, pois o \texttt{pdfLaTeX} precisa convertê-los para \texttt{pdf}, o que aumenta o tempo de processamento.

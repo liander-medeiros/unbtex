@@ -1,0 +1,50 @@
+% ----------------------------------------------------------
+\chapter{Citações}\label{apd:cit}
+% ----------------------------------------------------------
+
+A classe UnB\TeX\ utiliza o pacote \texttt{unbtexcite} (derivado do \texttt{abntex2cite}, da classe abn\TeX2) para formatar citações e referências bibliográficas conforme as normas da ABNT. O arquivo \texttt{referencias.bib} contém exemplos de entradas bibliográficas que podem servir de modelo para a inclusão de novas referências em documentos. Os comandos a seguir podem ser utilizados para realizar citações:
+\begin{verbatim}
+\cite{nome_da_entrada}
+\citeonline{nome_da_entrada}
+\citeauthoronline{nome_da_entrada}
+\citeyear{nome_da_entrada}
+\end{verbatim}
+
+Considere, por exemplo, a entrada do tipo manual (\texttt{@manual}) contida no arquivo \texttt{referencias.bib}:
+\begin{verbatim}
+@manual{memoir,
+    address = {Normandy Park, WA},
+    author = {Peter Wilson and Lars Madsen},
+    organization = {The Herries Press},
+    title = {The Memoir Class for Configurable Typesetting -- User Guide},
+    url = {https://mirrors.ctan.org/macros/latex/contrib/memoir/memman.pdf},
+    year = {2025}}
+\end{verbatim}
+
+Utilizando o comando \verb|\cite{memoir}| no arquivo \texttt{tex} correspondente a este parágrafo, o resultado gerado é \cite{memoir}. Para o comando \verb|\citeonline{memoir}|, o resultado gerado é \citeonline{memoir}. Os comandos \verb|\citeauthoronline| e \verb|\citeyear| apresentam separadamente no texto o nome dos autores e o ano da publicação. Por exemplo, podemos escrever:
+\begin{mdframed}[style=plainSty,innertopmargin=8pt] % verde
+Em \citeyear{memoir}, os autores \citeauthoronline{memoir} publicaram o manual da versão v3.8.4b do pacote \textsf{memoir}.
+\end{mdframed}
+O comando \verb|\footciteref{nome_da_entrada}| apresenta a referência como uma nota de rodapé. Todos os comandos de citação admitem argumento opcional para indicar uma posição específica da referência, como a página citada.
+
+No arquivo \texttt{bib}, cada entrada de referência bibliográfica possuiu campos cujo preenchimento pode ser obrigatório ou opcional, a depender de seu tipo. No campo \texttt{author}, caso haja mais de um autor, seus nomes devem ser separados por \texttt{and}. Campos como \texttt{address}, \texttt{publisher} e \texttt{year} não preenchidos, podem gerar na lista de referências, respectivamente, as expressões abreviadas [\emph{s.l.}], [\emph{s.n.}] e [\emph{s.d.}] para indicar que são indeterminados. Recomenda-se o uso de programas gratuitos, como o JabRef\footnote{Disponível em: \url{https://www.jabref.org/}}, para auxiliar o preenchimento e gerenciamento de arquivos \texttt{bib}.
+
+No arquivo \texttt{referencias.bib}, além da entrada para referência do tipo manual (como no exemplo dado), há também entradas para referências do tipo artigo de periódico \cite{greenwade1993}, artigo de conferência \cite{martin1997}, livro \cite{schaum1956}, capítulo de livro \cite{bates2010}, monografia \cite{morgado1990}, dissertação de mestrado \cite{macedo2005}, tese de doutorado \cite{guizzardi2005}, relatório técnico \cite{KBBDR2020}, dentre outras. Muitos outros exemplos podem ser encontrados em \cite{abntex2cite}.
+
+Note que de acordo com as normas da ABNT, é obrigatório informar data para cada referência bibliográfica. Caso a data não seja identificada na referência, deve-se informar uma data aproximada entre colchetes, conforme situações ilustradas a seguir:
+
+\begin{alineas}
+    \item um ano ou outro: [2007 ou 2008]
+    \item data provável: [2008?]
+    \item data certa não indicada no item: [2008]
+    \item use intervalos menores de 20 anos: [entre 1999 e 2008]
+    \item data aproximada: [ca. 2000]
+    \item década certa: [200-]
+    \item década provável: [200-?]
+    \item século certo: [20--]
+    \item século provável: [20--?]
+\end{alineas}
+
+Em \citeonline{marins1991}, por exemplo, o ano provável é indicado por \citeyear{marins1991}. No arquivo \texttt{bib}, a entrada correspondente a esta referência tem o campo \texttt{year} declarado como \verb|year = {1991?}|.
+
+Para mais informações sobre os comandos e o uso do \texttt{unbtexcite}, consulte os manuais do \texttt{abntex2cite} \cite{abntex2cite,abntex2cite-alf}, a partir do qual o \texttt{unbtexcite} foi derivado.
